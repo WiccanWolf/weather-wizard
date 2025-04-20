@@ -3,12 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "listen.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "nodemon src/backend/connection.js"
+    "start": "node src/backend/listen.js"
   },
   "dependencies": {
     "axios": "^1.8.4",

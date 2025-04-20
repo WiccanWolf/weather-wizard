@@ -5,7 +5,6 @@ import cors from 'cors';
 dotenv.config();
 
 const app = express();
-const port = 3752;
 
 const baseUrl = 'http://api.weatherapi.com/v1';
 
@@ -33,7 +32,3 @@ app.get('/current', async (req, res) => {
 
 app.use(cors());
 app.use(express.json());
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
