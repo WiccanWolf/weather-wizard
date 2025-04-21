@@ -4,6 +4,7 @@ import axios from 'axios';
 import cors from 'cors';
 dotenv.config();
 
+const port = 3752;
 const app = express();
 
 app.use(
@@ -42,4 +43,8 @@ app.get('/current', async (req, res) => {
     console.error(error.response?.data || error.message);
     res.status(500).send({ error: 'Failed to fetch weather data.' });
   }
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
 });

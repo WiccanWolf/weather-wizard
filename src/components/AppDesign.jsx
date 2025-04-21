@@ -10,7 +10,7 @@ const AppDesign = () => {
     const fetchWeather = async () => {
       try {
         const response = await axios.get(
-          'https://weather-wizard-e39d.onrender.com/current'
+          'https://weather-wizard-e39d.onrender.com/current?q=BR1'
         );
         console.log(response);
         setData(response.data);
@@ -31,10 +31,7 @@ const AppDesign = () => {
       ) : error ? (
         <p>Error fetching weather data.</p>
       ) : (
-        <>
-          <p>Temperature: {data?.current?.temp_c}°C</p>
-          <p>Condition: {data?.current?.condition?.text}</p>
-        </>
+        <>{JSON.stringify(data, null, 2)}</>
       )}
     </>
   );
