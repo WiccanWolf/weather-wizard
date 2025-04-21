@@ -6,7 +6,10 @@ dotenv.config();
 
 const app = express();
 
-const baseUrl = 'http://api.weatherapi.com/v1';
+app.use(cors());
+app.use(express.json());
+
+const baseUrl = process.env.VITE_WEATHER_BASE_URL;
 
 app.get('/', (req, res) => {
   res.status(200).send({ message: 'Hello world!' });
@@ -14,8 +17,9 @@ app.get('/', (req, res) => {
 
 app.get('/current', async (req, res) => {
   const { q } = req.query;
-  const key = process.env.WEATHER_API_KEY;
-
+  const key = process.env.VITE_WEATHER_API_KEY;
+  console.log(`GET /current | q=${q} | key=${key}`);
+  res.setHeader('Access-Control-Allow-Origin', '*');
   if (!q) {
     return res.status(400).send({ error: 'Missing required query parameter.' });
   }
@@ -29,6 +33,3 @@ app.get('/current', async (req, res) => {
     res.status(500).send({ error: 'Failed to fetch weather data.' });
   }
 });
-
-app.use(cors());
-app.use(express.json());

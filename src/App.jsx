@@ -1,4 +1,5 @@
 import './App.css';
+import AppDesign from './components/AppDesign';
 
 const App = () => {
   return (
