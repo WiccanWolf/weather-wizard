@@ -7,13 +7,18 @@ dotenv.config();
 const app = express();
 
 const corsOption = {
-  origin: ['*', console.log('Incoming origin: ', origin)],
+  origin: '*',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cors(corsOption));
 app.use(express.json());
+
+app.use((req, res, next) => {
+  console.log(`Recieved request from origin: ${req.headers.origin}`);
+  next();
+});
 
 const baseUrl = process.env.VITE_WEATHER_BASE_URL;
 

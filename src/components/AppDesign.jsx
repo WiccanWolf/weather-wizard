@@ -7,16 +7,12 @@ const AppDesign = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const key = import.meta.env.VITE_WEATHER_API_KEY;
-    console.log(key);
     const fetchWeather = async () => {
       try {
         const response = await axios.get(
-          'https://weather-wizard-e39d.onrender.com/current',
-          {
-            params: { key, q: 'BR1' },
-          }
+          'https://weather-wizard-e39d.onrender.com/api/current'
         );
+        console.log(response);
         setData(response.data);
       } catch (error) {
         setError(error);
