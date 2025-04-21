@@ -6,7 +6,24 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  'http://127.0.0.1:5173',
+  'https://weather-wizard-e39d.onrender.com',
+];
+
+const corsOption = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOption));
 app.use(express.json());
 
 const baseUrl = process.env.VITE_WEATHER_BASE_URL;
