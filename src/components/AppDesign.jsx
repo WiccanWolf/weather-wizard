@@ -10,7 +10,7 @@ const AppDesign = () => {
     const fetchWeather = async () => {
       try {
         const response = await axios.get(
-          'https://weather-wizard-e39d.onrender.com/api/current'
+          'https://weather-wizard-e39d.onrender.com/current'
         );
         console.log(response);
         setData(response.data);

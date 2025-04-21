@@ -6,13 +6,13 @@ dotenv.config();
 
 const app = express();
 
-const corsOption = {
-  origin: '*',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-};
-
-app.use(cors(corsOption));
+app.use(
+  cors({
+    origin: '*',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+  })
+);
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 app.get('/current', async (req, res) => {
   const { q } = req.query;
   const key = process.env.VITE_WEATHER_API_KEY;
-  console.log(`GET /current | q=${q} | key=${key}`);
+  console.log(`GET /current | q=${q}`);
   if (!q) {
     return res.status(400).send({ error: 'Missing required query parameter.' });
   }
