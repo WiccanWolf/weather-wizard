@@ -36,7 +36,6 @@ app.get('/current', async (req, res) => {
   const { q } = req.query;
   const key = process.env.VITE_WEATHER_API_KEY;
   console.log(`GET /current | q=${q} | key=${key}`);
-  res.setHeader('Access-Control-Allow-Origin', '*');
   if (!q) {
     return res.status(400).send({ error: 'Missing required query parameter.' });
   }
